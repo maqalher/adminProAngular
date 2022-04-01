@@ -1,0 +1,36 @@
+crear componente login
+  ng g c auth/login -is --skip-Tests
+  ng g c auth/register -is --skip-Tests
+
+  ng g c pages/nopagefound -is --skip-Tests
+  ng g c pages/dashboard -is --skip-Tests
+
+  ng g c shared/breadcrumbs -is --skip-Tests
+  ng g c shared/sidebar -is --skip-Tests
+  ng g c shared/header -is --skip-Tests
+
+copiar en assets
+  images
+  plugins
+
+copiar en assets
+  css
+  js
+  scss
+
+
+agregar estilos y scripts en index
+
+copiar hmtl en los respectivos componenetes
+
+crear rutas
+  ng g m appRouting --flat
+
+
+crear componenetes
+  ng g c pages/progress -is --skip-Tests
+  ng g c pages/grafica1 -is --skip-Tests
+
+
+componenete pages
+  ng g c pages/pages --flat -is --skip-Tests
