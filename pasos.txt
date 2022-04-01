@@ -34,3 +34,31 @@ crear componenetes
 
 componenete pages
   ng g c pages/pages --flat -is --skip-Tests
+
+
+modulo pages
+  ng g m pages/pages --flat
+
+modulo shared
+  ng g m shared/shared --flat
+
+modulo auth
+  ng g m auth/auth --fl
+
+crear pages.routing.ts en pages (manual)
+  ng-router -> snnipet para genera el esqueleto (PagesRoutingModule)
+    importar archivo en  app-routing-module.ts
+        imports: [
+          RouterModule.forRoot(routes),
+          PagesRoutingModule
+        ],
+
+crear auth.routing.ts en pages (manual)
+  ng-router -> snnipet para genera el esqueleto (AuthRoutingModule)
+    importar archivo en  app-routing-module.ts
+        imports: [
+          RouterModule.forRoot(routes),
+          PagesRoutingModule,
+          AuthRoutingModule
+        ],
+
