@@ -62,3 +62,30 @@ crear auth.routing.ts en pages (manual)
           AuthRoutingModule
         ],
 
+import FormsModule en pages.module.ts
+
+
+crear components
+  ng g m components/components --flat
+  ng g c components/incrementador -is --skip-Tests
+
+
+instalar ng2-charts (graficas)
+  npm install --save ng2-charts
+    pages.modules.ts
+      import { NgChartsModule } from 'ng2-charts';
+      imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule,
+        FormsModule,
+        ComponentsModule,
+        NgChartsModule
+      ]
+
+      ** marca error tambien instalar chart.js
+
+
+crear componenete dona
+  ng g c components/dona -is --skip-Tests
+  *agregar NgChartsModule a components.module.ts
