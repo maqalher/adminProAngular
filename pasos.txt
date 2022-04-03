@@ -89,3 +89,14 @@ instalar ng2-charts (graficas)
 crear componenete dona
   ng g c components/dona -is --skip-Tests
   *agregar NgChartsModule a components.module.ts
+
+
+crear componenete accountSettings
+  ng g c pages/accountSettings -is --skip-Tests
+
+
+crear servicio settings
+  ng g s services/settings --skip-Tests
+
+crear servicio sidebar
+  ng g s services/sidebar --skip-Tests
