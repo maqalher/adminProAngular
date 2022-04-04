@@ -100,3 +100,9 @@ crear servicio settings
 
 crear servicio sidebar
   ng g s services/sidebar --skip-Tests
+
+crear componenete promesas
+  ng g c pages/promesas -is --skip-Tests
+
+crear componenete rxjs
+  ng g c pages/rxjs -is --skip-Tests
