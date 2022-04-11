@@ -106,3 +106,24 @@ crear componenete promesas
 
 crear componenete rxjs
   ng g c pages/rxjs -is --skip-Tests
+
+crear app/models/usuario.model.ts
+
+crear servicio usuario
+  ng g s services/usuario --skip-Tests
+
+HttpClientModule em auth.module.ts
+
+crear interfaz
+ interfaces/register-form.interface.ts
+
+
+instalar sweetalert2
+  npm install sweetalert2
+
+crear interfaz
+ interfaces/login-form.interface.ts
+
+crear guard
+  ng g guard guards/auth --skip-Tests
+    CanActivate
