@@ -5,6 +5,7 @@ import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { tap, map, Observable, catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
 
@@ -16,6 +17,7 @@ declare const gapi: any;
 export class UsuarioService {
 
   public auth2: any;
+  public usuario!:Usuario;
 
   constructor(
     private http: HttpClient,
@@ -26,6 +28,13 @@ export class UsuarioService {
 
   }
 
+  get token():string{
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid():string{
+    return this.usuario.uid || '';
+  }
 
   googleInit() {
 
@@ -62,17 +71,40 @@ export class UsuarioService {
   // si existe lo renueva y almacena en localstorage
   // si no existe manda false
   validarToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
+    // const token = localStorage.getItem('token') || '';
 
     return this.http.get(`${base_url}/login/renew`, {
       headers: {
-        'x-token': token
+        // 'x-token': token
+        'x-token': this.token
       }
     }).pipe(
-      tap((resp: any) => {
+      // tap((resp: any) => {
+      //   // muestra toda la infomacion del usuario
+      //   console.log(resp);
+
+      //   const { email, google, nombre, role, img = '', uid } = resp.usuario;
+
+      //     this.usuario = new Usuario( nombre, email, '', img, google, role, uid );
+
+      //   // this.usuario.imprimirUsuario();
+
+      //   localStorage.setItem('token', resp.token);
+      // }),
+      // map(res => true),
+      map((resp: any) => {
+        // muestra toda la infomacion del usuario
+        console.log(resp);
+
+        const { email, google, nombre, role, img = '', uid } = resp.usuario;
+
+          this.usuario = new Usuario( nombre, email, '', img, google, role, uid );
+
+        // this.usuario.imprimirUsuario();
+
         localStorage.setItem('token', resp.token);
+        return true
       }),
-      map(res => true),
       catchError(error => of(false))
     );
 
@@ -84,18 +116,37 @@ export class UsuarioService {
     return this.http.post(`${base_url}/usuarios`, formData)
       .pipe(
         tap((resp: any) => {
-          // console.log(resp);
+          console.log(resp)
+
           localStorage.setItem('token', resp.token)
         })
       )
 
   }
 
+  actualizarPerfil(data:{email:string, nombre:string, role:string}){
+
+    data = {
+      ...data,
+      role: this.usuario.role || ''
+    }
+
+    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    });
+
+  }
+
+
   login(formData: LoginForm) {
     return this.http.post(`${base_url}/login`, formData)
       .pipe(
         tap((resp: any) => {
+          // muestra toda la infomacion del usuario
           // console.log(resp);
+
           localStorage.setItem('token', resp.token)
         })
       )

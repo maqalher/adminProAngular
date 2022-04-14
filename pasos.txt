@@ -127,3 +127,10 @@ crear interfaz
 crear guard
   ng g guard guards/auth --skip-Tests
     CanActivate
+
+crear componente perfil
+  ng g c pages/perfil --skip-Tests
+
+
+crear servicio fileUpload
+  ng g s services/fileUpload --skip-Tests
